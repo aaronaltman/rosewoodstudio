@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Header() {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-primary">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className=" font-bold text-2xl">RoseWood Studio</a>
       </div>
       <div className="flex-none">
         <button className="btn btn-square btn-ghost">
