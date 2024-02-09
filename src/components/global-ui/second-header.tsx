@@ -28,7 +28,9 @@ export default function SecondHeader() {
               </svg>
             </label>
           </div>
-          <div className="flex-1 px-2 mx-2">Navbar Title</div>
+          <div className="flex-1 px-2 mx-2">
+            <h1 className="text-3xl font-bold">Rosewood Studio</h1>
+          </div>
           <div className="flex-none hidden lg:block">
             <ul className="menu menu-horizontal">
               {/* Navbar menu content here */}
