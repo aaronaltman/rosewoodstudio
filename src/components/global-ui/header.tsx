@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <div className="navbar bg-primary">
       <div className="flex-1">
-        <a className=" font-bold text-2xl">RoseWood Studio</a>
+        <a className="font-bold text-2xl">Rosewood Studio</a>
       </div>
       <div className="flex-none">
         <button className="btn btn-square btn-ghost">
@@ -24,7 +24,7 @@ export default function Header() {
         </button>
         <input
           type="checkbox"
-          value="dim"
+          value="dark"
           className="toggle theme-controller"
         />
       </div>
