@@ -4,7 +4,9 @@ export default function Carousel() {
   return (
     <>
       <div className="bg-base-200 px-8 pb-1">
-        <h2 className="text-xl font-bold pb-1">Featured Flower Arrangements</h2>
+        <h2 className="text-xl font-bold pb-1">
+          Featured Holiday Flower Arrangements
+        </h2>
         <p className="max-w-xl">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
           praesentium.
