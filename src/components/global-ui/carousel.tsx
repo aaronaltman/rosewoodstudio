@@ -3,6 +3,7 @@ import React from "react";
 export default function Carousel() {
   return (
     <>
+      <h2 className="text-xl font-bold bg-base-200 px-8 pb-1">Featured</h2>
       <div className="carousel">
         <div id="item1" className="carousel-item">
           <img
