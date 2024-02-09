@@ -31,8 +31,8 @@ export default function SecondHeader() {
           <div className="flex-1 px-2 mx-2">
             <h1 className="text-3xl font-bold">Rosewood Studio</h1>
           </div>
-          <div className=" hidden lg:flex lg:justify-center lg:items-center">
-            <ul className="menu menu-horizontal flex">
+          <div className="flex-none hidden lg:flex">
+            <ul className="menu menu-horizontal flex items-center justify-center">
               {/* Navbar menu content here */}
               <li>
                 <a>About</a>
