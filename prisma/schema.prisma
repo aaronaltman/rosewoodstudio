@@ -9,3 +9,26 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Posts {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  content       String
+  featuredImage String?
+  category      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("posts")
+}
+
+model Pages {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  content       String
+  featuredImage String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("pages")
+}

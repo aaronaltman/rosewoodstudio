@@ -31,20 +31,23 @@ export default function SecondHeader() {
           <div className="flex-1 px-2 mx-2">
             <h1 className="text-3xl font-bold">Rosewood Studio</h1>
           </div>
-          <div className="flex-none hidden lg:block">
-            <ul className="menu menu-horizontal">
+          <div className=" hidden lg:flex lg:justify-center lg:items-center">
+            <ul className="menu menu-horizontal flex">
               {/* Navbar menu content here */}
               <li>
-                <a>Navbar Item 1</a>
+                <a>About</a>
               </li>
               <li>
-                <a>Navbar Item 2</a>
+                <a>Services</a>
+              </li>
+              <li>
+                <a>Contact</a>
               </li>
               <li>
                 <input
                   type="checkbox"
                   value="dark"
-                  className="toggle theme-controller"
+                  className="toggle theme-controller flex items-center justify-center"
                 />
               </li>
             </ul>
