@@ -11,13 +11,16 @@ datasource db {
 }
 
 model Posts {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   title         String
   content       String
   featuredImage String?
-  category      String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  categoryId    String?   @db.ObjectId // Add this line
+  category      Category? @relation(fields: [categoryId], references: [id]) // Correct this line
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  tag           Tag?      @relation(fields: [id], references: [id])
+  user          User?     @relation(fields: [id], references: [id])
 
   @@map("posts")
 }
@@ -29,6 +32,38 @@ model Pages {
   featuredImage String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+  user          User?    @relation(fields: [id], references: [id])
 
   @@map("pages")
+}
+
+model Category {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  name  String  @unique
+  posts Posts[]
+
+  @@map("categories")
+}
+
+model Tag {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  name  String  @unique
+  posts Posts[]
+
+  @@map("tags")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  clerkId   String   @unique // A unique identifier from Clerk
+  name      String? // Optional: For storing names if you use them in your app
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships to other models (if necessary)
+  posts Posts[]
+  pages Pages[]
+  // Add other relations here, e.g., comments: Comment[]
+
+  @@map("users")
 }
