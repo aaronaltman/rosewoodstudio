@@ -1,5 +1,10 @@
 import React from "react";
+import DashboardHeader from "../_components/dashboard-header";
 
 export default function DashboardPage() {
-  return <div>page</div>;
+  return (
+    <div>
+      <DashboardHeader />
+    </div>
+  );
 }
