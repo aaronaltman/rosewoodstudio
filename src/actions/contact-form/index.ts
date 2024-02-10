@@ -1,3 +1,3 @@
 export default function handleContactFormAction() {
-  console.log("Form submitted");
+  console.log("Form submitted damn!");
 }
