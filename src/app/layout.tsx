@@ -19,7 +19,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" data-theme="cupcake">
         <body className={inter.className}>
-          <div className="max-w-5xl mx-auto bg-base-300 min-h-screen">
+          <div className="flex flex-col max-w-5xl mx-auto bg-base-300 min-h-screen">
             {children}
           </div>
         </body>
