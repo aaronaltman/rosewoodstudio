@@ -15,12 +15,14 @@ model Posts {
   title         String
   content       String
   featuredImage String?
-  categoryId    String?   @db.ObjectId // Add this line
-  category      Category? @relation(fields: [categoryId], references: [id]) // Correct this line
+  categoryId    String?   @db.ObjectId
+  category      Category? @relation(fields: [categoryId], references: [id])
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  tag           Tag?      @relation(fields: [id], references: [id])
-  user          User?     @relation(fields: [id], references: [id])
+  tagId         String?   @db.ObjectId // Added field for tag ID
+  tag           Tag?      @relation(fields: [tagId], references: [id]) // Updated relation to use tagId
+  userId        String?   @db.ObjectId // Added field for user ID
+  user          User?     @relation(fields: [userId], references: [id]) // Updated relation to use userId
 
   @@map("posts")
 }
@@ -32,7 +34,8 @@ model Pages {
   featuredImage String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  user          User?    @relation(fields: [id], references: [id])
+  userId        String?  @db.ObjectId // Ensure there's a field for the user ID
+  user          User?    @relation(fields: [userId], references: [id]) // Ensure relation is set correctly
 
   @@map("pages")
 }
@@ -55,15 +58,12 @@ model Tag {
 
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  clerkId   String   @unique // A unique identifier from Clerk
-  name      String? // Optional: For storing names if you use them in your app
+  clerkId   String   @unique
+  name      String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  // Relationships to other models (if necessary)
-  posts Posts[]
-  pages Pages[]
-  // Add other relations here, e.g., comments: Comment[]
+  posts     Posts[]
+  pages     Pages[]
 
   @@map("users")
 }

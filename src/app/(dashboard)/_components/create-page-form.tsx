@@ -1,11 +1,9 @@
 import { createPage } from "@/actions/pages";
 import React from "react";
-import { auth, currentUser } from "@clerk/nextjs";
-import { contactFormSchema } from "@/lib/zod-schema/contact-form";
+import { currentUser } from "@clerk/nextjs";
 
 export default async function CreatePageForm() {
   const user = await currentUser();
-  const isAuth = auth();
   return (
     <>
       <form
