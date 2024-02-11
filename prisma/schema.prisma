@@ -11,59 +11,21 @@ datasource db {
 }
 
 model Posts {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  title         String
-  content       String
-  featuredImage String?
-  categoryId    String?   @db.ObjectId
-  category      Category? @relation(fields: [categoryId], references: [id])
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  tagId         String?   @db.ObjectId // Added field for tag ID
-  tag           Tag?      @relation(fields: [tagId], references: [id]) // Updated relation to use tagId
-  userId        String?   @db.ObjectId // Added field for user ID
-  user          User?     @relation(fields: [userId], references: [id]) // Updated relation to use userId
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  title   String
+  content String
+  clerkId String @db.ObjectId
+  user    Users  @relation(fields: [clerkId], references: [id])
 
   @@map("posts")
 }
 
-model Pages {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  title         String
-  content       String
-  featuredImage String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  userId        String?  @db.ObjectId // Ensure there's a field for the user ID
-  user          User?    @relation(fields: [userId], references: [id]) // Ensure relation is set correctly
-
-  @@map("pages")
-}
-
-model Category {
-  id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  name  String  @unique
-  posts Posts[]
-
-  @@map("categories")
-}
-
-model Tag {
-  id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  name  String  @unique
-  posts Posts[]
-
-  @@map("tags")
-}
-
-model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  clerkId   String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  posts     Posts[]
-  pages     Pages[]
+model Users {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  email   String
+  posts   Posts[]
+  clerkId String  @db.ObjectId
 
   @@map("users")
 }
