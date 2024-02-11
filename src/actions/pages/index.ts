@@ -1,33 +1,28 @@
 "use server";
-
+// pages/api/posts/create.js
+import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/db/db";
-import { PageSchema } from "@/lib/zod-schema/contact-form"; // Adjust the import path as necessary
 
-export async function PostPageForm(formData: FormData) {
-  // Convert FormData to a plain object
-  const formDataObject = {
-    title: formData.get("title"),
-    featuredimage: formData.get("featuredimage"),
-    content: formData.get("content"),
-    userId: formData.get("userId"),
-  };
+export async function createPage(formData: FormData) {
+  const title = formData.get("title") as string;
+  const content = formData.get("content") as string;
+  // For optional fields, use nullish coalescing if you want to allow null values
+  const featuredImage = formData.get("featuredImage") as string;
+  const user = formData.get("userId") as string;
 
-  // Validate the data using Zod
-  const validation = PageSchema.safeParse(formDataObject);
+  // You might also want to ensure userId fits the expected type, e.g., number or UUID
+  // This example assumes userId is a string for simplicity
 
-  if (!validation.success) {
-    // Handle validation failure
-    console.error("Validation errors:", validation.error.issues);
-    throw new Error("Validation failed"); // Or return a more specific error response
-  }
-
-  // If validation is successful, proceed with database operation
-  const response = await prisma.pages.create({
-    data: validation.data, // Use validated data
+  const createThePage = await prisma.pages.create({
+    data: {
+      title,
+      content,
+      featuredImage,
+      user: {
+        connect: {
+          id: user,
+        },
+      },
+    },
   });
-
-  // Optionally, revalidate paths if using ISR
-  // await revalidatePath('/some-path-to-revalidate');
-
-  return response; // Or handle the response as needed
 }

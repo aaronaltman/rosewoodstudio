@@ -1,7 +1,7 @@
-import { PostPageForm } from "@/actions/pages";
+import { createPage } from "@/actions/pages";
 import React from "react";
 import { auth, currentUser } from "@clerk/nextjs";
-import { PageSchema } from "@/lib/zod-schema/contact-form";
+import { contactFormSchema } from "@/lib/zod-schema/contact-form";
 
 export default async function CreatePageForm() {
   const user = await currentUser();
@@ -9,18 +9,12 @@ export default async function CreatePageForm() {
   return (
     <>
       <form
-        action={PostPageForm}
+        action={createPage}
         className="flex flex-col gap-2 max-w-md mx-auto"
       >
-        <input type="hidden" name="userId" value={user?.id} />
+        <input type="hidden" name="userId" id="userId" value={user?.id} />
         <label htmlFor="title">Post Title</label>
-        <input
-          id="title"
-          required={true}
-          name="title"
-          type="text"
-          className="input"
-        />
+        <input id="title" name="title" type="text" className="input" />
         <label htmlFor="featuredimage">Featured Image</label>
         <input
           id="featuredimage"
@@ -32,10 +26,9 @@ export default async function CreatePageForm() {
         <textarea
           id="content"
           name="content"
-          required={true}
           className="textarea textarea-bordered"
           placeholder="Add Post Content"
-        ></textarea>
+        />
         <button>Add Post</button>
       </form>
     </>
