@@ -7,13 +7,10 @@ import HomeHero from "@/components/home-ui/home-hero";
 export default function Home() {
   return (
     <>
-      <SecondHeader />
       <main className="">
-        <HomeHero />
-        <Carousel />
-        <ContactForm />
+        <h1 className="text-xl">Rosewood Studio</h1>
+        <p className="text-lg">Opening Soon</p>
       </main>
-      <Footer />
     </>
   );
 }
