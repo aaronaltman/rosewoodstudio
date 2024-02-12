@@ -7,15 +7,30 @@ export default async function CreatePageForm() {
   return (
     <>
       <h1>Create a New Posts</h1>
+      <p>Welcome, {user?.firstName}</p>
       <p>Use the form below to create a new post.</p>
-
+      <UserButton
+        appearance={{
+          elements: {
+            avatarBox: {
+              width: "4rem",
+              height: "4rem",
+            },
+          },
+        }}
+      />
       <form
         action={createPage}
         className="flex flex-col gap-2 max-w-md mx-auto"
       >
-        <input type="hidden" name="userId" value={user?.id} />
         <label htmlFor="title">Post Title</label>
-        <input id="title" name="title" type="text" className="input" />
+        <input
+          id="title"
+          name="title"
+          type="text"
+          className="input"
+          placeholder="Enter a Title for Your Post"
+        />
         <label htmlFor="content">Post Content</label>
         <textarea
           id="content"
