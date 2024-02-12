@@ -27,3 +27,27 @@ export async function createPage(formData: FormData) {
   redirect("/dashboard");
   return newPage;
 }
+
+export async function editPage(formData: FormData) {
+  const title = formData.get("title") as string;
+  const content = formData.get("content") as string;
+  const id = formData.get("id") as string;
+
+  const { userId } = auth();
+
+  if (!userId) {
+    throw new Error("User not found.");
+  }
+
+  // Update the page
+  const updatedPage = await prisma.post.update({
+    where: {
+      id,
+    },
+    data: {
+      title,
+      content,
+    },
+  });
+  revalidatePath("/dashboard");
+}

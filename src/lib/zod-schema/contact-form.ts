@@ -10,3 +10,7 @@ export const postFormSchema = z.object({
 });
 
 export type TPostFormSchema = z.infer<typeof postFormSchema>;
+
+export const editPostFormSchema = postFormSchema.extend({
+  id: z.string().min(1, { message: "post id is required" }),
+});
