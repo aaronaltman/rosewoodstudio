@@ -15,6 +15,7 @@ export default async function CreatePageForm() {
         action={createPage}
         className="flex flex-col gap-2 max-w-md mx-auto"
       >
+        <input type="hidden" name="userId" value={user?.id} />
         <label htmlFor="title">Post Title</label>
         <input id="title" name="title" type="text" className="input" />
         <label htmlFor="content">Post Content</label>
