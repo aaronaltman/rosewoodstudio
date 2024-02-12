@@ -12,7 +12,8 @@ export async function createPage(formData: FormData) {
     throw new Error("Missing required fields.");
   }
 
-  const createThePage = await prisma.post.create({
+  // Create a new page
+  const newPage = await prisma.post.create({
     data: {
       title,
       content,
