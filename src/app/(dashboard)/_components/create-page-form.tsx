@@ -1,5 +1,4 @@
 import { createPage } from "@/actions/pages";
-import React from "react";
 import { UserButton, currentUser } from "@clerk/nextjs";
 
 export default async function CreatePageForm() {

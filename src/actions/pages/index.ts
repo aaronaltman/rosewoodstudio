@@ -2,6 +2,9 @@
 
 import prisma from "@/lib/db/db";
 import { auth } from "@clerk/nextjs";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { z } from "zod";
 
 export async function createPage(formData: FormData) {
   const title = formData.get("title") as string;
@@ -21,5 +24,7 @@ export async function createPage(formData: FormData) {
       userId,
     },
   });
+  revalidatePath("/dashboard");
+  redirect("/dashboard");
   return newPage;
 }
