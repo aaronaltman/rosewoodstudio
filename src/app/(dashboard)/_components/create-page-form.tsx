@@ -1,6 +1,6 @@
 import { createPage } from "@/actions/pages";
 import React from "react";
-import { currentUser } from "@clerk/nextjs";
+import { UserButton, currentUser } from "@clerk/nextjs";
 
 export default async function CreatePageForm() {
   const user = await currentUser();
@@ -8,9 +8,7 @@ export default async function CreatePageForm() {
     <>
       <h1>Create a New Posts</h1>
       <p>Use the form below to create a new post.</p>
-      <p>
-        {user?.firstName}, {user?.id}, {user?.emailAddresses[0].emailAddress}
-      </p>
+
       <form
         action={createPage}
         className="flex flex-col gap-2 max-w-md mx-auto"

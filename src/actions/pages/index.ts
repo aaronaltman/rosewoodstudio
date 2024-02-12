@@ -13,7 +13,7 @@ export async function createPage(formData: FormData) {
   }
 
   // Create a new page
-  const newPage = await prisma.post.create({
+  const newPage = await prisma.posts.create({
     data: {
       title,
       content,

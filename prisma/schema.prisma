@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
+model Posts {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   userId    String
   title     String
