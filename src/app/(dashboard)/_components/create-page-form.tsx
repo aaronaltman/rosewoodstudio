@@ -6,7 +6,7 @@ export default async function CreatePageForm() {
   const user = await currentUser();
   return (
     <>
-      <h1>Create a New Post</h1>
+      <h1>Create a New Posts</h1>
       <p>Use the form below to create a new post.</p>
       <p>
         {user?.firstName}, {user?.id}, {user?.emailAddresses[0].emailAddress}
